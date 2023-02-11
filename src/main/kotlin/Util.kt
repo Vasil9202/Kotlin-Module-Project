@@ -6,10 +6,11 @@ class Util {
             return Scanner(System.`in`).nextLine()
         }
 
-        fun inputDigitChoice(): Int{
+        fun inputDigitChoice(): Int {
             val number = inputText().toIntOrNull()
-            if(number == null) return -1
+            if (number == null) return -1
             else return number
-        }    }
+        }
+    }
 
 }

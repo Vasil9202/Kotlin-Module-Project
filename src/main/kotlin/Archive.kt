@@ -16,7 +16,7 @@ data class Archive(val archiveName: String) {
         CREATE("0. Создать архив"), CHOOSE("1. Открыть архив"), EXIT("2. Выход")
     }
 
-    fun menuArchive(){
+    fun menuArchive() {
         println("Меню архивов")
         for (command in Archive.ArchiveEnum.values())
             println(command.menu)
@@ -72,26 +72,22 @@ data class Archive(val archiveName: String) {
             menuArchive()
             return
         }
-            println("Список архивов")
-            println("Выберите один из архивов")
-            for ((index, value) in archiveList.withIndex()) {
-                println("$index. ${value.archiveName}")
-            }
+        println("Список архивов")
+        println("Выберите один из архивов")
+        for ((index, value) in archiveList.withIndex()) {
+            println("$index. ${value.archiveName}")
+        }
         println("${archiveList.size}. Выход")
 
         val command = Util.inputDigitChoice()
-        if(command == archiveList.size){
+        if (command == archiveList.size) {
             menuArchive()
-            return
-        }
-        else if (command == -1) {
+        } else if (command == -1) {
             println(WrongInputError.WRONG_FORMAT.error)
             openArchive()
-            return
         } else if (command > archiveList.size) {
             println(WrongInputError.WRONG_NUMBER.error)
             openArchive()
-            return
         } else {
             archiveList[command].noteMenu()
         }
@@ -131,9 +127,10 @@ data class Archive(val archiveName: String) {
         val noteName = Util.inputText()
         println("Имя заметки: \"$noteName\". Введите содержание заметки.")
         val noteBody = Util.inputText()
-        if(!noteBody.isEmpty() && !noteName.isEmpty()){
-        notesList.add(Note(noteName,noteBody))
-        println("Заметка \"$noteName\" сохранена")}
+        if (!noteBody.isEmpty() && !noteName.isEmpty()) {
+            notesList.add(Note(noteName, noteBody))
+            println("Заметка \"$noteName\" сохранена")
+        }
     }
 
     fun openNote() {
@@ -142,17 +139,17 @@ data class Archive(val archiveName: String) {
             noteMenu()
             return
         }
-            println("Список заметок")
-            println("Выберите одну из заметок")
-        for ((index, note) in this.notesList.withIndex()){
-            println("$index. ${note.noteName}")}
+        println("Список заметок")
+        println("Выберите одну из заметок")
+        for ((index, note) in this.notesList.withIndex()) {
+            println("$index. ${note.noteName}")
+        }
         println("${notesList.size}. Выход")
         val command = Util.inputDigitChoice()
-        if(command == notesList.size){
+        if (command == notesList.size) {
             noteMenu()
             return
-        }
-        else if (command > notesList.size) {
+        } else if (command > notesList.size) {
             println(WrongInputError.WRONG_NUMBER.error)
             openNote()
             return
@@ -161,9 +158,9 @@ data class Archive(val archiveName: String) {
             openNote()
             return
         } else {
-            println("${notesList[command].noteName} \n ${notesList[command].noteText} \n \\\\Для возврата в меню введите нажмите клавишу Enter\\\\")
+            println("${notesList[command].noteName}\n ${notesList[command].noteText} \n \\\\Для возврата в меню введите нажмите клавишу Enter\\\\")
             val exit = Util.inputText()
-             openNote()
+            openNote()
         }
     }
 
